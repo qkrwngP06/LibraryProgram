@@ -41,7 +41,6 @@ public class LibraryFunction {
 	}
 
 	// 책 정보 출력
-	// 대출가능,불가능도 추가해보기
 	public void printBook() {
 		for (int i = 0; i < books.length; i++) {
 			System.out.println("======책 정보 출력======");
@@ -57,7 +56,7 @@ public class LibraryFunction {
 		System.out.print("대출자: ");
 		String myname = sc.next();
 		for (int i = 0; i < books.length; i++) {
-			System.out.println("====== 책 정보 출력======");
+			System.out.println("====== 책 정보 출력 ======");
 			System.out.println("책 이름: " + books[i].getBookname() + " | 저자: " + books[i].getAuthor() + " | 출판사: "
 					+ books[i].getPublisher());
 		}
@@ -88,7 +87,7 @@ public class LibraryFunction {
 			System.out.println("취소되었습니다.");
 		}
 	}
-
+	
 	// 반납(아직 미완성)
 	public void returnBook() {
 		Scanner sc = new Scanner(System.in);
@@ -96,11 +95,38 @@ public class LibraryFunction {
 		// 대출자 이름 입력
 		System.out.print("대출자: ");
 		String myname = sc.next();
-		// 대출자가 대출한 정보 출력(값을 받아와야함)
+		// 대출자가 대출한 정보 출력(값을 받아와야함) -> 책이름, 저자, 출판사
+		//다른 이름을 입력하면 대출정보가 없습니다. 
+		boolean rented = false;
+		for (int i = 0; i < books.length; i++) {
+			if(myname.equals(books[i].getMyname())) {
+				System.out.println("====== 책 정보 출력 ======");
+				System.out.println("책 이름: " + books[i].getBookname() + " | 저자: " + books[i].getAuthor() + " | 출판사: "
+						+ books[i].getPublisher());
+				rented = true;
+			}
+		}
+		if (rented == false) {
+			System.out.println("대출정보가 없습니다.");
+			return;
+		}
 		
 		System.out.print("책을 반납하시겠습니까? [y/n] >> ");
 		if (sc.next().equals("y")) {
-			System.out.println("반납되었습니다.");
+			System.out.print("반납할 책 입력: ");
+			String returnbook = sc.next();
+			boolean mybook = false;
+			for (int i = 0; i < books.length; i++) {
+				if(returnbook.equals(books[i].getBookname()) && myname.equals(books[i].getMyname())) {
+					books[i].setMyname(null);
+					System.out.println("반납되었습니다.");
+					mybook = true;
+				}
+			}
+			if (mybook == false) {
+				System.out.println("대출한 책이 아닙니다.");
+				return;
+			}
 		} else {
 			System.out.println("취소되었습니다.");
 		}

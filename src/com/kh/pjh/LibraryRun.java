@@ -3,8 +3,9 @@ package com.kh.pjh;
 public class LibraryRun {
 	public static void main(String[] args) {
 		LibraryFunction lFunc = new LibraryFunction();
-		EXIT: 
-			while (true) {
+		//lFunc.makeUser();
+		EXIT :
+		while (true) {
 			int choice = lFunc.printMenu();
 			switch (choice) {
 			case 1: // Ã¥ µî·Ï
