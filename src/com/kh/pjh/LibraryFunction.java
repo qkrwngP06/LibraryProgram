@@ -28,11 +28,11 @@ public class LibraryFunction {
 		for (int i = 0; i < books.length; i++) {
 			System.out.println("======" + (i + 1) + "번째 책 정보 등록 ======");
 			System.out.print("책 이름: ");
-			String bookname = sc.next();
+			String bookname = sc.nextLine();
 			System.out.print("저자: ");
-			String author = sc.next();
+			String author = sc.nextLine();
 			System.out.print("출판사: ");
-			String publisher = sc.next();
+			String publisher = sc.nextLine();
 			books[i] = new Library();
 			books[i].setBookname(bookname);
 			books[i].setAuthor(author);
@@ -62,8 +62,9 @@ public class LibraryFunction {
 		}
 		System.out.println("============================");
 		System.out.print("대출 할 책 이름: ");
-		String bookname = sc.next();
-
+		sc.nextLine();
+		String bookname = sc.nextLine();
+		
 		// 저자와 출판사는...어떻게 불러오는거지..?
 		int bookNo = 0; // library에 대출 책 인덱스
 		for (int i = 0; i < books.length; i++) {
@@ -80,7 +81,7 @@ public class LibraryFunction {
 		System.out.println("대출자: " + myname + " | 책 이름: " + bookname + " | 저자: " + books[bookNo].getAuthor()
 				+ " | 출판사: " + books[bookNo].getPublisher());
 		System.out.print("책을 대출하시겠습니까? [y/n] >> ");
-		if (sc.next().equals("y")) {
+		if (sc.nextLine().equals("y")) {
 			books[bookNo].setMyname(myname); // 해당 도서에 대한 Myname(대출자)를 세팅
 			System.out.println(myname + "님, 대출되었습니다.");
 		} else {
@@ -88,7 +89,7 @@ public class LibraryFunction {
 		}
 	}
 	
-	// 반납(아직 미완성)
+	// 반납
 	public void returnBook() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("====== 반납 ======");
@@ -114,7 +115,8 @@ public class LibraryFunction {
 		System.out.print("책을 반납하시겠습니까? [y/n] >> ");
 		if (sc.next().equals("y")) {
 			System.out.print("반납할 책 입력: ");
-			String returnbook = sc.next();
+			sc.nextLine();
+			String returnbook = sc.nextLine();
 			boolean mybook = false;
 			for (int i = 0; i < books.length; i++) {
 				if(returnbook.equals(books[i].getBookname()) && myname.equals(books[i].getMyname())) {
